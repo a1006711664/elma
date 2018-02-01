@@ -1,5 +1,7 @@
 <template>
   <div id="app">
+    {{show1}}
+    <input type="text" v-model="demo">
     <img src="./assets/logo.png">
     <router-view/>
   </div>
@@ -7,7 +9,17 @@
 
 <script>
 export default {
-  name: 'App'
+  name: 'App',
+
+  data:function(){
+    return{
+      info:{
+        id:222,
+      },
+      show1:false,
+      demo:'hello',
+    }
+  },
 }
 </script>
 
