@@ -1,13 +1,27 @@
 <template>
   <div id="app">
-    {{show1}}
-    <input type="text" v-model="demo">
-    <img src="./assets/logo.png">
+    <v-header>
+
+    </v-header>
+    <div class="tab">
+      <div class="tab-item">
+        <router-link :to="{ name: 'goods'}">商品</router-link>
+        </div>
+      <div class="tab-item">
+        <router-link :to="{ name: 'ratings'}">评论</router-link></div>
+      <div class="tab-item">
+        <router-link :to="{ name: 'seller'}">商家</router-link></div>
+    </div>
+
     <router-view/>
   </div>
 </template>
 
 <script>
+  import header from './components/header/header'
+  import "./common/common.less"
+
+
 export default {
   name: 'App',
 
@@ -20,16 +34,24 @@ export default {
       demo:'hello',
     }
   },
+  components:{
+    vHeader: header,
+  }
+
 }
 </script>
 
-<style>
+
+<style lang="less" scoped>
+  /*tab下的less*/
+  @import './app.less';
+
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
+
+
 </style>
