@@ -18,9 +18,8 @@
 </template>
 
 <script>
-  import header from './components/header/header'
-  import "./common/common.less"
 
+  import header from './components/header/header'
 
 export default {
   name: 'App',

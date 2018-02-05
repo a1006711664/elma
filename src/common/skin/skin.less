@@ -1,3 +1,26 @@
+//定义一些变量
 
 
+@import './base.less';
+//变量
 @roseC : rgb(255,61,0);
+
+
+
+
+
+
+//定义一些变量
+
+.borderB1px(@color){
+  position: relative;
+  &::after{
+    display: block;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    border-bottom: 1px solid @color;
+    content: '';
+  }
+}
