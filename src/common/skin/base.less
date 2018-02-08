@@ -1,6 +1,9 @@
 //一些像素级别的问题
 
 //一像素
+
+
+
 @media (min-device-pixel-ratio: 1.5){
   .border1px(@color){
     &:after{
@@ -13,6 +16,21 @@
   .border1px(@color){
     &::after{
       transform: scaleY(0.5);
+    }
+  }
+}
+
+@media (min-device-pixel-ratio:3){
+  .border1px(@color){
+    &::after{
+      transform: scaleY(0.5);
+    }
+  }
+}
+@media (min-device-pixel-ratio:3){
+  .border1px(@color){
+    &::after{
+      transform: scaleY(0.4);
     }
   }
 }

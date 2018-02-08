@@ -4,7 +4,8 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 // 公共样式
-import "./common/common.less"
+ import "./common/common.less"
+
 
 Vue.config.productionTip = false
 //使用devtools

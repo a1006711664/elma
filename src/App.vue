@@ -1,8 +1,6 @@
 <template>
   <div id="app">
-    <v-header>
-
-    </v-header>
+    <component :is="whichHeader"></component>
     <div class="tab">
       <div class="tab-item">
         <router-link :to="{ name: 'goods'}">商品</router-link>
@@ -20,6 +18,7 @@
 <script>
 
   import header from './components/header/header'
+  // import xtmlheader from './components/xtmlheader/header'
 
 export default {
   name: 'App',
@@ -31,10 +30,12 @@ export default {
       },
       show1:false,
       demo:'hello',
+      whichHeader: 'vHeader',
     }
   },
   components:{
     vHeader: header,
+    // xHeader: xtmlheader,
   }
 
 }
