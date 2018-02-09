@@ -7,7 +7,7 @@
 
   <swiper :options="swiperOption" ref="mySwiper" @touchStart="callback">
     <!-- slides -->
-    <swiper-slide v-for="(item, index) in img" :key="index">
+    <swiper-slide v-for="(item, index) in img" :key="index" ref="swiperSlide">
 
       <img :src="item.path" alt="" >
 
@@ -27,11 +27,11 @@
       </el-carousel-item>
     </el-carousel>
 
-    <el-carousel :interval="4000" type="card" height="200px">
-      <el-carousel-item v-for="(item, index) in img" :key="index">
-        <img :src="item.path" alt="">
-      </el-carousel-item>
-    </el-carousel>
+    <!--<el-carousel :interval="4000" type="card" height="200px">-->
+      <!--<el-carousel-item v-for="(item, index) in img" :key="index">-->
+        <!--<img :src="item.path" alt="">-->
+      <!--</el-carousel-item>-->
+    <!--</el-carousel>-->
 
 
 
@@ -46,8 +46,10 @@
 <script>
   //轮播
   import 'swiperCss'
-  import {swiper, swiperSlide} from 'vue-awesome-swiper'
-
+  import {Swiper,swiper, swiperSlide} from 'vue-awesome-swiper'
+  import swiperA from 'vue-awesome-swiper'
+  var a = new swiperA.Swiper()
+  // console.log(a.slideTo)
     export default {
         name: "seller",
       data:function(){
@@ -65,20 +67,23 @@
                 el: '.swiper-pagination',
               },
               on: {
-                slideChangeStart:function(){
-                  this.$refs.mySwiper.update();
-                },
-                init: function(){
-                  console.log(this);
-                },
-                click:function(){
-                  console.log('click了')
+
+                click:function(w){
+                  console.log(this)
+                  console.log(w)
+                  console.log(swiper)
+
                 }
               },
 
             },
 
           }
+      },
+      computed:{
+          swiper:function(){
+            return this.refs.mySwiper
+          },
       },
       components: {
         swiper,
@@ -88,15 +93,20 @@
       methods:{
           callback:function(){
             this.$refs.mySwiper.update();
-          }
+          },
       },
       created:function(){
       },
       mounted:function () {
         var _self = this;
-
+        console.log(_self.$refs);
+        console.log(_self.$refs.mySwiper);
         var a = setTimeout(function(){
           _self.img=[
+            {
+              path:
+                "http://xtml.legeek.xyz/public/upload/banner/20180126/7529673d605b86a3ab73486768c11bd4.png",
+            },
             {
               path:'http://xtml.legeek.xyz/public/upload/banner/20180126/616672abbe3706abbe670db05dd88a87.png',
             },
@@ -106,15 +116,8 @@
             },
 
           ];
-          _self.$refs.mySwiper.options.autoplay = true;
-          _self.$refs.mySwiper.options.loop= true;
-          _self.$nextTick(function() {
-            console.log(_self.$refs.mySwiper.update)
-            console.log('更新了')
-            _self.$refs.mySwiper.update();
-          });
 
-        },2000);
+        },1000);
 
       }
 
