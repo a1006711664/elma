@@ -5,21 +5,38 @@
 </div>
 
 
-  <swiper :options="swiperOption" ref="mySwiper" @someSwiperEvent="callback">
+  <swiper :options="swiperOption" ref="mySwiper" @touchStart="callback">
     <!-- slides -->
-    <swiper-slide v-for="(item, index) in img" :key="index" aaa="as">
+    <swiper-slide v-for="(item, index) in img" :key="index">
 
-      <img :src="item.path" alt="">
-
+      <img :src="item.path" alt="" >
 
     </swiper-slide>
-
     <!-- Optional controls -->
     <div class="swiper-pagination" slot="pagination"></div>
     <div class="swiper-button-prev swiper-button-white" slot="button-prev"></div>
     <div class="swiper-button-next swiper-button-white" slot="button-next"></div>
     <!--<div class="swiper-scrollbar"   slot="scrollbar"></div>-->
   </swiper>
+
+
+
+    <el-carousel height="150px">
+      <el-carousel-item v-for="(item, index) in img" :key="index">
+        <img :src="item.path" alt="">
+      </el-carousel-item>
+    </el-carousel>
+
+    <el-carousel :interval="4000" type="card" height="200px">
+      <el-carousel-item v-for="(item, index) in img" :key="index">
+        <img :src="item.path" alt="">
+      </el-carousel-item>
+    </el-carousel>
+
+
+
+
+
 
   </div>
 
@@ -39,15 +56,24 @@
             swiperOption: {
               autoplay: true,
               loop: true,
-              loopAdditionalSlides : 1,
               observer:true,
-              observeParents:true,
               navigation: {
                 nextEl: '.swiper-button-next',
                 prevEl: '.swiper-button-prev',
               },
               pagination: {
                 el: '.swiper-pagination',
+              },
+              on: {
+                slideChangeStart:function(){
+                  this.$refs.mySwiper.update();
+                },
+                init: function(){
+                  console.log(this);
+                },
+                click:function(){
+                  console.log('click了')
+                }
               },
 
             },
@@ -58,13 +84,17 @@
         swiper,
         swiperSlide
       },
+
       methods:{
           callback:function(){
-
+            this.$refs.mySwiper.update();
           }
+      },
+      created:function(){
       },
       mounted:function () {
         var _self = this;
+
         var a = setTimeout(function(){
           _self.img=[
             {
@@ -76,8 +106,18 @@
             },
 
           ];
-        },1500);
+          _self.$refs.mySwiper.options.autoplay = true;
+          _self.$refs.mySwiper.options.loop= true;
+          _self.$nextTick(function() {
+            console.log(_self.$refs.mySwiper.update)
+            console.log('更新了')
+            _self.$refs.mySwiper.update();
+          });
+
+        },2000);
+
       }
+
     }
 </script>
 
