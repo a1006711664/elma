@@ -34,7 +34,8 @@ export default new Router({
     {
       path: '/seller',
       name: 'seller',
-      component: seller
+      component: seller,
+      meta: { keepAlive: true }
     },
 
   ]

@@ -5,9 +5,10 @@
 </div>
 
 
-  <swiper :options="swiperOption" ref="mySwiper" @touchStart="callback">
+  <swiper v-if='img.length>0' :options="swiperOption" ref="mySwiper"
+  >
     <!-- slides -->
-    <swiper-slide v-for="(item, index) in img" :key="index" ref="swiperSlide">
+    <swiper-slide v-for="(item, index) in img" :key="index" >
 
       <img :src="item.path" alt="" >
 
@@ -19,10 +20,10 @@
     <!--<div class="swiper-scrollbar"   slot="scrollbar"></div>-->
   </swiper>
 
-
+<button @click='add'>click</button>
 
     <el-carousel height="150px">
-      <el-carousel-item v-for="(item, index) in img" :key="index">
+      <el-carousel-item v-for="(item, index) in img" :key="index+'as'">
         <img :src="item.path" alt="">
       </el-carousel-item>
     </el-carousel>
@@ -46,19 +47,24 @@
 <script>
   //轮播
   import 'swiperCss'
-  import {Swiper,swiper, swiperSlide} from 'vue-awesome-swiper'
-  import swiperA from 'vue-awesome-swiper'
-  var a = new swiperA.Swiper()
+  import {swiper, swiperSlide} from 'vue-awesome-swiper'
+ 
+  
   // console.log(a.slideTo)
     export default {
         name: "seller",
       data:function(){
           return{
-            img:[],
+            img:[ ],
             swiperOption: {
-              autoplay: true,
+            centeredSlides: true,
+            autoplay: {
+              delay: 1500,
+              disableOnInteraction: false
+             },
               loop: true,
               observer:true,
+              observeParents:true,
               navigation: {
                 nextEl: '.swiper-button-next',
                 prevEl: '.swiper-button-prev',
@@ -71,7 +77,6 @@
                 click:function(w){
                   console.log(this)
                   console.log(w)
-                  console.log(swiper)
 
                 }
               },
@@ -80,42 +85,35 @@
 
           }
       },
-      computed:{
-          swiper:function(){
-            return this.refs.mySwiper
-          },
-      },
       components: {
         swiper,
         swiperSlide
       },
-
       methods:{
+        add:function(){
+          this.img.push({
+              path:
+                "http://xtml.legeek.xyz/public/upload/banner/20180126/7529673d605b86a3ab73486768c11bd4.png",
+            });
+        },
           callback:function(){
-            this.$refs.mySwiper.update();
           },
       },
       created:function(){
       },
       mounted:function () {
         var _self = this;
-        console.log(_self.$refs);
-        console.log(_self.$refs.mySwiper);
+       
         var a = setTimeout(function(){
-          _self.img=[
-            {
+          _self.img.push({
               path:
                 "http://xtml.legeek.xyz/public/upload/banner/20180126/7529673d605b86a3ab73486768c11bd4.png",
-            },
-            {
+            });
+         _self.img.push({
               path:'http://xtml.legeek.xyz/public/upload/banner/20180126/616672abbe3706abbe670db05dd88a87.png',
-            },
-            {
-              path:
-                "http://xtml.legeek.xyz/public/upload/banner/20180126/7529673d605b86a3ab73486768c11bd4.png",
-            },
-
-          ];
+            });
+              console.log(_self.$refs.mySwiper);
+          // _self.swiper.slideTo(2, 1000, false);
 
         },1000);
 

@@ -11,7 +11,10 @@
         <router-link :to="{ name: 'seller'}">商家</router-link></div>
     </div>
 
-    <router-view/>
+  <keep-alive>
+    <router-view v-if="$route.meta.keepAlive"></router-view>
+</keep-alive>
+<router-view v-if="!$route.meta.keepAlive"></router-view>
   </div>
 </template>
 
