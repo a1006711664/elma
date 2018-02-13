@@ -1,6 +1,68 @@
+@import (reference) url("../../common/skin/skin.less");
+@import  url("../../common/skin/base.less");
 
 
 
-body{
-  color:@roseC;
+
+
+
+.text{
+  .border1px(@color:#ccc);
+}
+
+//定义一些变量
+
+
+
+
+.border1px(@color){
+  position: relative;
+  &::after{
+    display: block;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    border-bottom: 1px solid @color;
+    content: '';
+  }
+}
+
+
+
+//一些像素级别的问题
+
+//一像素
+
+
+
+@media (min-device-pixel-ratio: 1.5){
+  .border1px(@color){
+    &:after{
+      transform: translateY(0.7);
+    }
+  }
+}
+
+@media (min-device-pixel-ratio:2){
+  .border1px(@color){
+    &::after{
+      transform: scaleY(0.5);
+    }
+  }
+}
+
+@media (min-device-pixel-ratio:3){
+  .border1px(@color){
+    &::after{
+      transform: scaleY(0.5);
+    }
+  }
+}
+@media (min-device-pixel-ratio:3){
+  .border1px(@color){
+    &::after{
+      transform: scaleY(0.4);
+    }
+  }
 }

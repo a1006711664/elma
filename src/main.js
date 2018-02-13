@@ -8,6 +8,10 @@ import "./common/common.less"
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 Vue.use(ElementUI);
+//ajax
+//http请求
+import VueResource from 'vue-resource'
+Vue.use(VueResource)
 
 
 Vue.config.productionTip = false

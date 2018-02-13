@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <component :is="whichHeader"></component>
+    <component :is="whichHeader" :seller="seller"></component>
     <div class="tab">
       <div class="tab-item">
         <router-link :to="{ name: 'goods'}">商品</router-link>
@@ -11,34 +11,50 @@
         <router-link :to="{ name: 'seller'}">商家</router-link></div>
     </div>
 
-  <keep-alive>
-    <router-view v-if="$route.meta.keepAlive"></router-view>
-</keep-alive>
-<router-view v-if="!$route.meta.keepAlive"></router-view>
+    <keep-alive>
+      <router-view v-if="$route.meta.keepAlive"></router-view>
+    </keep-alive>
+    <router-view v-if="!$route.meta.keepAlive"></router-view>
+
   </div>
 </template>
 
 <script>
 
   import header from './components/header/header'
-  // import xtmlheader from './components/xtmlheader/header'
+  import xtmlheader from './components/xtmlheader/header'
 
 export default {
   name: 'App',
 
   data:function(){
     return{
+      //商品
+      seller:{},
+
+
       info:{
         id:222,
       },
       show1:false,
       demo:'hello',
-      whichHeader: 'vHeader',
+      whichHeader: 'xHeader',
     }
   },
   components:{
-    vHeader: header,
-    // xHeader: xtmlheader,
+     vHeader: header,
+     xHeader: xtmlheader,
+  },
+  mounted:function(){
+    var _self = this;
+    //vue-resource
+    this.$http.get('/api/seller').then(response => {
+      _self.seller = response.body.data;
+
+    }, response => {
+      // error callback
+    });
+
   }
 
 }
