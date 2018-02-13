@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="testBox">
 <div>
   商家
 </div>
@@ -26,13 +26,25 @@
       <!--</el-carousel-item>-->
     <!--</el-carousel>-->
 
+<div class="cropperTest">
 
+
+    <vueCropper
+      ref="cropper"
+      :img="optionPic.img"
+      :outputSize="optionPic.size"
+      :outputType="optionPic.outputType" class="asd"
+    ></vueCropper>
+
+</div>
   </div>
 
 
 </template>
 
 <script>
+  import "./style.less";
+  import VueCropper from 'vue-cropper';
   //轮播
   import 'swiperCss'
   import {Swiper,swiper, swiperSlide} from 'vue-awesome-swiper'
@@ -43,6 +55,15 @@
           return{
             isBanner:false,
             img:[],
+            //图片剪裁
+            optionPic:{
+              img:require('./cropper.jpg'),
+              autoCrop: true,
+              autoCropWidth: 100,
+              autoCropHeight: 100,
+              fixedBox: true,
+
+            },
             swiperOption: {
             autoplay: {
               //重要的
@@ -65,7 +86,8 @@
       },
       components: {
         swiper,
-        swiperSlide
+        swiperSlide,
+        VueCropper
       },
       methods:{
         callback:function(){
