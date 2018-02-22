@@ -1,8 +1,15 @@
 <template>
   <div class="testBox">
-<div>
-  商家
-</div>
+    <mt-loadmore :top-method="loadTop" @top-status-change="handleTopChange" ref="loadmore">
+      <ul>
+        <li v-for="item in list">{{ item }}</li>
+      </ul>
+      <div slot="top" class="mint-loadmore-top">
+        <!--<span class="rotate-circle"></span>-->
+        <!--<span v-show="topStatus !== 'loading'" :class="{ 'rotate': topStatus === 'drop' }">↓</span>-->
+        <!--<span v-show="topStatus === 'loading'">Loading...</span>-->
+      </div>
+    </mt-loadmore>
 
 
   <swiper :options="swiperOption" ref="mySwiper" @touchStart="callback" v-if="isBanner">
@@ -37,6 +44,12 @@
     ></vueCropper>
 
 </div>
+
+    <div>
+     <span class="rotate-circle circle-border">
+      <span class="small-circle"></span>
+    </span>
+    </div>
   </div>
 
 
@@ -55,6 +68,8 @@
           return{
             isBanner:false,
             img:[],
+            list:[1,2,3,4,56,6,7,23,3,4,4,4,5,66,7,87,8,9,9,0,3,345],
+            topStatus: '',
             //图片剪裁
             optionPic:{
               img:require('./cropper.jpg'),
@@ -91,6 +106,16 @@
       },
       methods:{
         callback:function(){
+        },
+        handleTopChange:function(status) {
+          this.topStatus = status;
+          console.log(status)
+        },
+        loadTop:function(){
+          var _self = this;
+          setTimeout(function(){
+            _self.$refs.loadmore.onTopLoaded();
+          },2000)
         },
       },
       created:function(){

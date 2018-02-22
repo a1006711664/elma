@@ -8,6 +8,11 @@ import "./common/common.less"
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 Vue.use(ElementUI);
+//移动端的ui
+// 引入全部组件
+import Mint from 'mint-ui';
+import 'mint-ui/lib/style.css'
+Vue.use(Mint);
 //ajax
 //http请求
 import VueResource from 'vue-resource'
