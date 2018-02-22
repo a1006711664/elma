@@ -18,8 +18,8 @@
   //据说可以搞一个直播什么的
   // video
   // require styles
-  import 'video.js/dist/video-js.css'
-  import { videoPlayer } from 'vue-video-player'
+  import 'vue-video-player/node_modules/video.js/dist/video-js.css';
+  import { videoPlayer } from 'vue-video-player';
     export default {
       name: "v-video",
       data:function(){

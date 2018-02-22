@@ -6,3 +6,42 @@ html{
   display: none;
 }
 
+//旋转圆圈
+  .rotate-circle{
+    position: relative;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: inline-block;
+    animation: rotate 0.7s linear infinite;
+  }
+  .circle-border{
+    box-shadow: 0px 0px 10px 0 rgba(0, 0, 0, 0.2);
+  }
+  .small-circle{
+    position: absolute;
+    display: inline-block;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    // background-color: green;
+    box-sizing: border-box;
+    border-top:3px solid #3acb3a;
+    border-left:3px solid #3acb3a;
+    border-right:3px solid #3acb3a;
+    border-bottom:3px solid transparent;
+  }
+
+
+  @keyframes rotate{
+    from{
+      transform: rotate(0deg);
+    }
+    to{
+      transform: rotate(360deg);
+    }
+  }
+//end

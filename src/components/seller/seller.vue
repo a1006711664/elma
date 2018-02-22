@@ -5,6 +5,9 @@
         <li v-for="item in list">{{ item }}</li>
       </ul>
       <div slot="top" class="mint-loadmore-top">
+         <span class="rotate-circle circle-border">
+            <span class="small-circle"></span>
+        </span>
         <!--<span class="rotate-circle"></span>-->
         <!--<span v-show="topStatus !== 'loading'" :class="{ 'rotate': topStatus === 'drop' }">↓</span>-->
         <!--<span v-show="topStatus === 'loading'">Loading...</span>-->
@@ -45,11 +48,6 @@
 
 </div>
 
-    <div>
-     <span class="rotate-circle circle-border">
-      <span class="small-circle"></span>
-    </span>
-    </div>
   </div>
 
 
