@@ -15,6 +15,7 @@
   "dependencies": {
     "chromedriver": "^2.35.0",
     "element-ui": "^2.1.0",
+    "hammerjs": "^2.0.8",
     "mint-ui": "^2.2.13",
     "vue": "^2.5.2",
     "vue-awesome-swiper": "^3.1.2",

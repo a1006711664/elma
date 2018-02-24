@@ -1,5 +1,6 @@
 <template>
-  <div class="testBox">
+  <div class="testBox"
+       v-swiperight = "swiperight">
     <mt-loadmore :top-method="loadTop" @top-status-change="handleTopChange" ref="loadmore">
       <ul>
         <li v-for="item in list">{{ item }}</li>
@@ -14,20 +15,20 @@
       </div>
     </mt-loadmore>
 
+  <!--start-->
+  <!--<swiper :options="swiperOption" ref="mySwiper" @touchStart="callback" v-if="isBanner">-->
+    <!--&lt;!&ndash; slides &ndash;&gt;-->
+    <!--<swiper-slide v-for="(item, index) in img" :key="index" ref="swiperSlide">-->
 
-  <swiper :options="swiperOption" ref="mySwiper" @touchStart="callback" v-if="isBanner">
-    <!-- slides -->
-    <swiper-slide v-for="(item, index) in img" :key="index" ref="swiperSlide">
+      <!--<img :src="item.path" alt="" >-->
 
-      <img :src="item.path" alt="" >
-
-    </swiper-slide>
-    <!-- Optional controls -->
-    <div class="swiper-pagination" slot="pagination"></div>
-    <div class="swiper-button-prev swiper-button-white" slot="button-prev"></div>
-    <div class="swiper-button-next swiper-button-white" slot="button-next"></div>
-    <!--<div class="swiper-scrollbar"   slot="scrollbar"></div>-->
-  </swiper>
+    <!--</swiper-slide>-->
+    <!--&lt;!&ndash; Optional controls &ndash;&gt;-->
+    <!--<div class="swiper-pagination" slot="pagination"></div>-->
+    <!--<div class="swiper-button-prev swiper-button-white" slot="button-prev"></div>-->
+    <!--<div class="swiper-button-next swiper-button-white" slot="button-next"></div>-->
+    <!--&lt;!&ndash;<div class="swiper-scrollbar"   slot="scrollbar"></div>&ndash;&gt;-->
+  <!--</swiper>-->
 
 
     <!--<el-carousel height="150px">-->
@@ -36,15 +37,32 @@
       <!--</el-carousel-item>-->
     <!--</el-carousel>-->
 
+    <!--end-->
+
 <div class="cropperTest">
 
 
     <vueCropper
       ref="cropper"
-      :img="optionPic.img"
-      :outputSize="optionPic.size"
-      :outputType="optionPic.outputType" class="asd"
-    ></vueCropper>
+      :img="option.img"
+      :outputSize="option.size"
+      :outputType="option.outputType"
+      :info="true"
+      :full="option.full"
+      :canMove="option.canMove"
+      :canMoveBox="option.canMoveBox"
+      :fixedBox="option.fixedBox"
+      :original="option.original"
+      :autoCrop="option.autoCrop"
+      :autoCropWidth="option.autoCropWidth"
+      :autoCropHeight="option.autoCropHeight"
+
+
+      @realTime="realTime"
+    >
+
+
+    </vueCropper>
 
 </div>
 
@@ -59,11 +77,28 @@
   //轮播
   import 'swiperCss'
   import {Swiper,swiper, swiperSlide} from 'vue-awesome-swiper'
-
+  var swiperJ = require('../../libs/touch/swiperJudge.js');
     export default {
         name: "seller",
       data:function(){
           return{
+            option: {
+              img: 'https://t10.baidu.com/it/u=2792595669,2545160207&fm=173&s=3A9265C94A6399555ED051190300C0C5&w=600&h=338&img.JPEG',
+              size: 1,
+              full: false,
+              outputType: 'png',
+              canMove: true,
+              fixedBox: false,
+              original: false,
+              canMoveBox: false,
+
+
+              autoCrop: true,
+              // 只有自动截图开启 宽度高度才生效
+              autoCropWidth: 300,
+              autoCropHeight: 250,
+              // 开启宽度和高度比例
+            },
             isBanner:false,
             img:[],
             list:[1,2,3,4,56,6,7,23,3,4,4,4,5,66,7,87,8,9,9,0,3,345],
@@ -103,6 +138,29 @@
         VueCropper
       },
       methods:{
+          //cropper
+        // 实时预览函数
+        realTime (data) {
+          this.previews = data
+        },
+
+
+
+
+
+
+
+        //end
+
+
+
+        swiperight:function(s){
+          console.log(12)
+          console.log(swiperJ(s))
+          if(swiperJ(s)){
+            this.$router.push({ path: '/ratings' })
+          }
+        },
         callback:function(){
         },
         handleTopChange:function(status) {
@@ -144,6 +202,10 @@
 </script>
 
 <style scoped>
+  .testBox{
+    width: 100vw;
+    overflow: hidden;
+  }
   .swiper-container{
     height: 100vw;
   }

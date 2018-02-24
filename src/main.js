@@ -18,6 +18,9 @@ Vue.use(Mint);
 import VueResource from 'vue-resource'
 Vue.use(VueResource)
 
+//touch
+// require('./libs/touch/vuetouch.js')
+import {tap,swipeleft,swiperight,press} from './libs/touch/vuetouch.js'
 
 Vue.config.productionTip = false
 //使用devtools

@@ -45,3 +45,41 @@ html{
     }
   }
 //end
+
+
+
+
+//动画
+
+
+.child-view {
+  position: absolute;
+  left:0;
+  top: 0;
+  //height: 100%;
+  width: 100%;
+  transition: all .5s cubic-bezier(.55,0,.1,1);
+  background-color: #f2f2f2;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+/* 当child-view的内容过多时会撑开child-view使得内部能够滚动 */
+.slide-left-enter, .slide-right-leave-to {
+  //opacity: 0;
+  -webkit-transform: translate(100vw, 0);
+  transform: translate(100vw, 0);
+}
+.slide-left-leave-to, .slide-right-enter {
+  //opacity: 0;
+  -webkit-transform: translate(-100vw, 0);
+  transform: translate(-100vw, 0);
+}
+.slide-left-enter-active, .slide-right-enter-active{
+  -webkit-transition: transform .5s linear;
+  transition: transform .5s linear;
+}
+.slide-left-leave-active, .slide-right-enter-active {
+//cubic-bezier(1.0, 0.5, 0.8, 1.0)
+  -webkit-transition: transform .5s linear;
+  transition: transform .5s linear;
+}
