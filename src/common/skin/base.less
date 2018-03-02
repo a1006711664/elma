@@ -1,5 +1,12 @@
+
+
+
+
 //函数式less
 
+
+
+//一像素
 .borderB1px(@color){
   position: relative;
   &::after{
@@ -12,15 +19,6 @@
     content: '';
   }
 }
-
-
-
-//一些像素级别的问题
-
-//一像素
-
-
-
 @media (min-device-pixel-ratio: 1.5){
   .border1px(@color){
     &:after{
@@ -28,7 +26,6 @@
     }
   }
 }
-
 @media (min-device-pixel-ratio:2){
   .border1px(@color){
     &::after{
@@ -51,3 +48,6 @@
     }
   }
 }
+
+
+

@@ -1,5 +1,4 @@
-// The Vue build version to load with the `import` command
-// (runtime-only or standalone) has been set in webpack.base.conf with an alias.
+
 import Vue from 'vue'
 import App from './App'
 import router from './router'
@@ -17,6 +16,11 @@ Vue.use(Mint);
 //http请求
 import VueResource from 'vue-resource'
 Vue.use(VueResource)
+
+//剪切
+import Croppa  from 'vue-croppa';
+import 'vue-croppa/dist/vue-croppa.css';
+Vue.use(Croppa)
 
 //touch
 // require('./libs/touch/vuetouch.js')

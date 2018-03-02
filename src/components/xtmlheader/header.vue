@@ -9,8 +9,12 @@
           <span class="brand"></span>
           <span class="name">{{seller.name}}</span>
         </div>
-        <div class="desc">
+        <div class="description">
             {{seller.description}}/{{seller.deliveryTime}}分钟送达
+        </div>
+        <div class="support" v-if="seller.supports">
+          <span class="icon"></span>
+          <span class="text">{{seller.supports[0].description}}</span>
         </div>
       </div>
     </div>

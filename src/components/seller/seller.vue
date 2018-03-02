@@ -39,33 +39,22 @@
 
     <!--end-->
 
-<div class="cropperTest">
+    <croppa v-model="myCroppa"
+            :initial-image="inintIMG"
+    ></croppa>
 
 
-    <vueCropper
-      ref="cropper"
-      :img="option.img"
-      :outputSize="option.size"
-      :outputType="option.outputType"
-      :info="true"
-      :full="option.full"
-      :canMove="option.canMove"
-      :canMoveBox="option.canMoveBox"
-      :fixedBox="option.fixedBox"
-      :original="option.original"
-      :autoCrop="option.autoCrop"
-      :autoCropWidth="option.autoCropWidth"
-      :autoCropHeight="option.autoCropHeight"
+    <button @click="uploadImage">click</button>
+    <button @click = 'showPic'>showPic</button>
+    <button @click="uploadCroppedImage">blobPic</button>
 
 
-      @realTime="realTime"
-    >
+    <img :src="blobTest" alt="">
 
 
-    </vueCropper>
-
-</div>
-
+    <cover :ifShow="ifShow"></cover>
+    <button @click="ifshow">change_ifShow</button>
+    <img :src="croppPic" alt="">
   </div>
 
 
@@ -73,32 +62,23 @@
 
 <script>
   import "./style.less";
-  import VueCropper from 'vue-cropper';
   //轮播
   import 'swiperCss'
-  import {Swiper,swiper, swiperSlide} from 'vue-awesome-swiper'
+  import {Swiper,swiper, swiperSlide} from 'vue-awesome-swiper';
+
+  import cover from '../io/cover.vue'
+
   var swiperJ = require('../../libs/touch/swiperJudge.js');
     export default {
         name: "seller",
       data:function(){
           return{
-            option: {
-              img: 'https://t10.baidu.com/it/u=2792595669,2545160207&fm=173&s=3A9265C94A6399555ED051190300C0C5&w=600&h=338&img.JPEG',
-              size: 1,
-              full: false,
-              outputType: 'png',
-              canMove: true,
-              fixedBox: false,
-              original: false,
-              canMoveBox: false,
-
-
-              autoCrop: true,
-              // 只有自动截图开启 宽度高度才生效
-              autoCropWidth: 300,
-              autoCropHeight: 250,
-              // 开启宽度和高度比例
-            },
+            //
+            croppPic:'',
+            ifShow:true,
+            blobTest:null,
+            myCroppa:{},
+            inintIMG:null,
             isBanner:false,
             img:[],
             list:[1,2,3,4,56,6,7,23,3,4,4,4,5,66,7,87,8,9,9,0,3,345],
@@ -135,24 +115,39 @@
       components: {
         swiper,
         swiperSlide,
-        VueCropper
+        cover,
       },
       methods:{
-          //cropper
-        // 实时预览函数
-        realTime (data) {
-          this.previews = data
+        ifshow:function(){
+            this.ifShow = !this.ifShow;
+          },
+        uploadCroppedImage() {
+          var _self = this;
+          this.myCroppa.generateBlob((blob) => {
+            console.log(blob);
+            // _self.blobTest = URL.createObjectURL(blob);
+            _self.croppPic = URL.createObjectURL(blob);
+            //下载
+            // var fileName = 'LIU';
+            // var link = document.createElement('a');
+            // console.log(URL.createObjectURL)
+            // link.href = URL.createObjectURL(blob);
+            // link.download = fileName;
+            // link.click();
+            // URL.revokeObjectURL(link.href);
+
+
+          }, 'image/jpeg', 0.8) // 80% compressed jpeg file
         },
+        showPic:function(){
+          this.croppPic = this.myCroppa.generateDataUrl();
+          console.log(this.myCroppa.generateDataUrl());
+        },
+        uploadImage:function(){
+          console.log(this.myCroppa)
+          this.myCroppa.chooseFile();
 
-
-
-
-
-
-
-        //end
-
-
+        },
 
         swiperight:function(s){
           console.log(12)
@@ -178,7 +173,9 @@
       },
       mounted:function () {
         var _self = this;
+
         var a = setTimeout(function(){
+          _self.inintIMG = "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2347294745,975286493&fm=27&gp=0.jpg";
           _self.img=[
             {
               path:
@@ -202,6 +199,7 @@
 </script>
 
 <style scoped>
+
   .testBox{
     width: 100vw;
     overflow: hidden;
