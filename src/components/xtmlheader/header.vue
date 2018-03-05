@@ -16,9 +16,24 @@
           <span class="icon"></span>
           <span class="text">{{seller.supports[0].description}}</span>
         </div>
+        <div v-if="seller.supports" class="support-count" @click="showDetail">
+          <span class="count">
+            {{seller.supports.length}}个
+          </span>
+          <!--<i> > </i>-->
+        </div>
       </div>
     </div>
+    <!--箭标-->
     <div class="bullentin-wrapper">
+      <span class="bullentin-title"></span>
+      <span class="bullentin-text">{{seller.bulletin}}</span>
+      <i class="rightAB"> √</i>
+    </div>
+    <div class="background">
+      <img :src="seller.avatar" alt="" width="100%" height="100%">
+    </div>
+    <div v-show="detailShow" class="detail">
 
     </div>
   </div>
@@ -31,14 +46,20 @@
     module.exports = {
       data:function(){
         return{
-        }
+          detailShow:false,
+
+        };
       },
       props:{
         seller:{
           type:Object,
         }
       },
-      methods: {},
+      methods: {
+        showDetail:function () {
+          this.detailShow = true;
+        }
+      },
       mounted:function(){
 
       }
