@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
+import live2D from '@/components/live2D/live2d/live2D'
 import elvideo from '@/components/video-test/v-video'
 import goods from '@/components/goods/goods'
 import ratings from '@/components/ratings/ratings'
@@ -14,8 +14,8 @@ export default new Router({
     // 主页
     {
       path: '/',
-      name: 'HelloWorld',
-      component: HelloWorld
+      name: 'live2D',
+      component: live2D
     },
     {
       path: '/v-video',

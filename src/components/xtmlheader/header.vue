@@ -34,6 +34,18 @@
       <img :src="seller.avatar" alt="" width="100%" height="100%">
     </div>
     <div v-show="detailShow" class="detail">
+      <div class="detail-wrapper clearfix">
+        <div class="detail-main">
+          <h1 class="name">{{seller.name}}</h1>
+          <div class="starWrap">
+            <star v-if="detailShow" :size="24" :score="seller.score"></star>
+          </div>
+
+        </div>
+      </div>
+      <div class="detail-close">
+        <i>X</i>
+      </div>
 
     </div>
   </div>
@@ -41,9 +53,16 @@
 
 
 <script>
+
+  import star from '../star/star.vue'
+
   require('./style.less');
 
-    module.exports = {
+  export default {
+      components: {
+      star,
+      },
+
       data:function(){
         return{
           detailShow:false,
@@ -62,7 +81,7 @@
       },
       mounted:function(){
 
-      }
+      },
   }
 
 
@@ -71,4 +90,5 @@
 <style lang="less" scoped>
   /*tab下的less*/
   /*@import './style.less';*/
+
 </style>

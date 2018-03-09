@@ -11,7 +11,11 @@
         <router-link :to="{ name: 'ratings'}">评论</router-link></div>
       <div class="tab-item">
         <router-link :to="{ name: 'seller'}">商家</router-link></div>
+      <div class="tab-item">
+        <router-link :to="{ name: 'live2D'}">首页</router-link></div>
+
     </div>
+
 
 
     <div class="container">

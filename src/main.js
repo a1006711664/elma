@@ -30,6 +30,23 @@ Vue.config.productionTip = false
 //使用devtools
 Vue.config.devtools = true
 
+
+
+// 一些指令
+// wow
+// import {WOW} from 'wowjs';
+import 'wowjs/css/libs/animate.css';
+import {fadeInDown} from './libs/WOW/animate.js'
+
+// another  directive
+import {scrollShow} from './libs/scrollreveal/animate.js'
+
+// console.log(WOW)
+// var wow = new WOW();
+// wow.init();
+
+
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

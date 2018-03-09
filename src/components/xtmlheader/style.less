@@ -116,6 +116,46 @@
     z-index: 100;
     overflow: auto;
     background-color: rgba(7,7,27,.8);
+    .clearfix{
+      display: inline-block;
+      &::after{
+        content:'';
+        display: block;
+        height: 0;
+        line-height: 0;
+        clear: both;
+        visibility: hidden;
+      }
+    }
+    .detail-wrapper{
+      width: 100%;
+      min-height: 100vh;
+      .detail-main{
+        margin-top: 64px;
+        padding-bottom: 64px;
+        .name{
+          line-height: 16px;
+          text-align: center;
+          font-size: 16px;
+          font-weight: 700;
+        }
+        .starWrap{
+          margin-top: 18px;
+          padding: 2px 0;
+          text-align: center;
+
+        }
+      }
+
+    }
+    .detail-close{
+      position: relative;
+      width: 32px;
+      height: 32px;
+      margin: -64px auto 0;
+      clear: both;
+      font-size: 60px;
+    }
   }
 }
 
