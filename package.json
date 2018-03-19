@@ -13,12 +13,14 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "awe-dnd": "^0.3.1",
     "better-scroll": "^1.8.2",
     "chromedriver": "^2.35.0",
     "element-ui": "^2.1.0",
     "hammerjs": "^2.0.8",
     "mint-ui": "^2.2.13",
     "scrollreveal": "^3.3.6",
+    "sortablejs": "^1.7.0",
     "vue": "^2.5.2",
     "vue-awesome-swiper": "^3.1.2",
     "vue-croppa": "^1.2.0",

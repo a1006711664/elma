@@ -1,0 +1,130 @@
+@import (reference) url("../../common/skin/skin.less");
+@import  url("../../common/skin/base.less");
+
+.goods{
+  display: flex;
+  position: absolute;
+  width: 100%;
+  bottom: 76px;
+  top: 174px;
+  overflow: hidden;
+  .menu-wrapper{
+    flex: 0 0 80px;
+    width: 80px;
+    background-color: #f3f5f7;
+    .menu-item{
+      display: table;
+      padding: 0 12px;
+      height: 54px;
+      width: 56px;
+      line-height: 14px;
+      .icon{
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+        margin-right: 2px;
+        vertical-align: top;
+        background-size: 16px 16px;
+        background-repeat: no-repeat;
+      }
+      .text{
+        font-size: 12px;
+        display: table-cell;
+        vertical-align: middle;
+        text-align: center;
+        .borderB1px(rgba(7,17,27,.1));
+      }
+      .decrease{
+        background-image: url("./decrease_3@2x.png");
+      }
+      .discount{
+        background-image: url("./discount_3@2x.png");
+      }
+      .special{
+        background-image: url("./special_3@2x.png");
+      }
+      .invoice{
+        background-image: url("./invoice_3@2x.png");
+      }
+      .guarantee{
+        background-image: url("./guarantee_3@2x.png");
+      }
+
+      &.current{
+        position: relative;
+        z-index: 10;
+        background-color: #fff;
+        font-weight: 700;
+        margin-top: -1px;
+        .text{
+          .borderNo();
+        }
+      }
+    }
+  }
+  .foods-wrapper{
+    flex: 1;
+    background-color: #fff;
+    .title{
+      padding-left: 14px;
+      height: 26px;
+      line-height: 26px;
+      border-left: 2px solid #d9dde1;
+      font-size: 12px;
+      color:rgb(147,153,159);
+      background-color: #f3f5f7;
+    }
+    .food-item{
+      display: flex;
+      margin: 18px;
+      padding-bottom: 18px;
+      .borderB1px(rgba(7,17,27,.1));
+      &:last-child{
+        .borderB1px(transparent);
+        margin-bottom: 0;
+      }
+      .icon{
+        flex: 0 0 60px;
+        margin-right: 10px;
+      }
+      .content{
+        flex: 1;
+        .name{
+          margin: 2px 0 8px 0;
+          height: 14px;
+          line-height: 14px;
+          font-size: 14px;
+          color: rgb(7,17,27);
+        }
+        .desc, .extra{
+          line-height: 10px;
+          font-size: 10px;
+          color:rgb(147,153,159);
+        }
+        .desc{
+          line-height: 12px;
+          margin-bottom: 8px;
+        }
+        .extra{
+          .count{
+            margin-right: 12px;
+          }
+        }
+        .price{
+          font-weight: 700;
+          line-height: 24px;
+          .now{
+            margin-right: 8px;
+            color:rgb(240,20,20);
+          }
+          .old{
+            font-weight: 500;
+            text-decoration: line-through;
+            color:rgb(147,153,159);
+          }
+        }
+      }
+    }
+
+  }
+}

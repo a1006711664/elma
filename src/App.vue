@@ -18,7 +18,6 @@
 
 
 
-    <div class="container">
             <keep-alive>
               <transition  :name="trans">
                 <router-view v-if="$route.meta.keepAlive" class="child-view"></router-view>
@@ -27,7 +26,7 @@
             <transition  :name="trans">
                 <router-view v-if="!$route.meta.keepAlive" class="child-view"></router-view>
             </transition>
-    </div>
+
   </div>
 </template>
 

@@ -55,6 +55,30 @@
     <cover :ifShow="ifShow"></cover>
     <button @click="ifshow">change_ifShow</button>
     <img :src="croppPic" alt="">
+
+
+
+    <div v-drag="drag">
+      <div class="dragItem" v-for="(item, index) in dragData">
+{{item}}   .{{index}}
+        <span @click="del(index)">删除</span>
+      </div>
+
+
+
+    </div>
+<button @click ='showNumber'>shownumber </button>
+
+
+
+
+
+
+
+
+
+
+
   </div>
 
 
@@ -109,6 +133,8 @@
                 el: '.swiper-pagination',
               },
             },
+            //drag
+            dragData:[1,2,3,4,5],
 
           }
       },
@@ -118,6 +144,16 @@
         cover,
       },
       methods:{
+        del:function(i){
+          this.dragData.splice(i,1);
+        },
+        showNumber:function(){
+  console.log(this.dragData)
+        },
+        drag:function(e){
+          console.log(e)
+          this.dragData.splice(e.newIndex, 0, this.dragData.splice(e.oldIndex, 1)[0])
+        },
         ifshow:function(){
             this.ifShow = !this.ifShow;
           },
@@ -206,6 +242,12 @@
   }
   .swiper-container{
     height: 100vw;
+  }
+  .dragItem{
+    background-color: #ccc;
+    width: 50%;
+    height: 50px;
+    margin-bottom: 20px;
   }
 
 </style>

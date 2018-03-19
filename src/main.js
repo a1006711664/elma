@@ -41,9 +41,9 @@ import {fadeInDown} from './libs/WOW/animate.js'
 // another  directive
 import {scrollShow} from './libs/scrollreveal/animate.js'
 
-// console.log(WOW)
-// var wow = new WOW();
-// wow.init();
+//drag 指令
+import {drag} from './libs/drag/drag.js'
+
 
 
 

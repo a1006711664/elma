@@ -19,6 +19,18 @@
     content: '';
   }
 }
+.borderNo(){
+  position: relative;
+  &::after{
+    display: block;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    border: none;
+    content: '';
+  }
+}
 @media (min-device-pixel-ratio: 1.5){
   .border1px(@color){
     &:after{
