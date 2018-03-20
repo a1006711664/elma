@@ -2,8 +2,8 @@
   <div class="goods">
     <div class="menu-wrapper" ref="menuScroll">
       <ul>
-        <li v-for="(item, index) in goods" class="menu-item" :class="{'current':currentIndex == index}">
-          <div class="text ">
+        <li v-for="(item, index) in goods" class="menu-item" :class="{'current':currentIndex == index}"  @click="selectMenu(index,$event)">
+          <div class="text">
             <span v-show="item.type>0" class="icon" :class="classMap[item.type]"></span> {{item.name}}
           </div>
         </li>
@@ -27,12 +27,16 @@
                 <div class="price">
                   <span class="now">¥{{food.price}}</span><span class="old" v-show="food.oldPrice">¥{{food.oldPrice}}</span>
                 </div>
+                <div class="cartcontrol-wrapper">
+                  <cartcontrol :food="food"></cartcontrol>
+                </div>
               </div>
             </li>
           </ul>
         </li>
       </ul>
     </div>
+    <shopcart :delivery-price="seller.deliveryPrice" :min-price="seller.minPrice"></shopcart>
   </div>
 </template>
 
@@ -40,7 +44,18 @@
   import BScroll from 'better-scroll';
 //没有用的,测试的
   var swiperJ = require('../../libs/touch/swiperJudge.js');
+  import shopcart from '../shopCart/cart'
+  import cartcontrol from '../cartcontrol/cartcontrol'
   export default {
+        props:{
+          seller:{
+            type: Object,
+          }
+        },
+        components:{
+          shopcart,
+          cartcontrol
+        },
         data: function () {
             return {
               transitionName:'qwe',
@@ -54,13 +69,13 @@
           currentIndex:function(){
             for(let i=0;i<this.listHeight.length;i++){
               let height1 = this.listHeight[i];
-              let b = i+1
-              let height2 = this.listHeight[ b ];
-              if(!height2 || (this.scrollY>=height1 && this.scrollY<height2)){
+              let height2 = this.listHeight[i+1];
+
+              if( !height2 || (this.scrollY>=height1 && this.scrollY<height2)){
                 return i;
               }
-              return 0;
             }
+            // return 0;
           },
         },
         methods: {
@@ -77,10 +92,14 @@
           },
           _initScroll:function(){
             let _self = this;
-            this.menuScroll = new BScroll(this.$refs.menuScroll,{});
+            this.menuScroll = new BScroll(this.$refs.menuScroll,{
+              // scrollY: true,
+              click:true,
+            });
             this.foodsScroll = new BScroll(this.$refs.foodsScroll,{
               // 实时的派发 scroll 事件
               probeType:3,
+              click:true,
             });
             this.foodsScroll.on('scroll',(pos)=>{
               _self.scrollY = Math.abs(Math.round(pos.y));
@@ -98,6 +117,13 @@
               this.listHeight.push(height);
             }
           },
+          selectMenu:function(index,e){
+            console.log(index)
+            let foodList = this.$refs.foodsScroll.getElementsByClassName('food-list-hook');
+            let el = foodList[index];
+            this.foodsScroll.scrollToElement(el, 300);
+
+          },
         },
       created:function(){
         this.classMap = ['decrease', 'discount', 'special', 'invoice', 'guarantee'];
@@ -109,7 +135,6 @@
             // 计算高度
             _self._calculateHeight();
           });
-
         }, response => {
           // error callback
         });

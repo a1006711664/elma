@@ -20,11 +20,11 @@
 
             <keep-alive>
               <transition  :name="trans">
-                <router-view v-if="$route.meta.keepAlive" class="child-view"></router-view>
+                <router-view v-if="$route.meta.keepAlive" :seller="seller"  class="child-view"></router-view>
               </transition>
             </keep-alive>
             <transition  :name="trans">
-                <router-view v-if="!$route.meta.keepAlive" class="child-view"></router-view>
+                <router-view v-if="!$route.meta.keepAlive" :seller="seller" class="child-view"></router-view>
             </transition>
 
   </div>
