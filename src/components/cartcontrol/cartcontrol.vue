@@ -1,6 +1,9 @@
 <template>
   <div class="cartcontrol">
-    <div class="cart-decrease" v-show="food.count>0">-</div>
+    <transition name="move">
+      <div class="cart-decrease inner" @click="decreaseCart" v-show="food.count>0">-</div>
+    </transition>
+    <!--<transition name></transition>-->
     <div class="cart-count" v-show="food.count>0">{{food.count}}</div>
     <div class="cart-add" @click="addCart">+</div>
 
@@ -9,25 +12,28 @@
 </template>
 
 <script>
-    export default {
-        name: "cartcontrol",
-      props:{
-          food:{
-            type:Object
-          }
+  export default {
+    name: "cartcontrol",
+    props: {
+      food: {
+        type: Object
+      }
+    },
+    methods: {
+      decreaseCart: function () {
+        this.food.count--;
       },
-      methods:{
-        addCart:function(){
-          if(!this.food.count){
-            this.$set(this.food,'count',1);
-          }else{
-            this.food.count++;
-          }
-        },
+      addCart: function () {
+        if (!this.food.count) {
+          this.$set(this.food, 'count', 1);
+        } else {
+          this.food.count++;
+        }
       },
-      created:function(){
-      },
-    }
+    },
+    created: function () {
+    },
+  }
 </script>
 
 <style lang="less" scoped>

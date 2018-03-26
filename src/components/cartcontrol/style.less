@@ -5,6 +5,7 @@
 .cartcontrol{
   font-size: 0;
   .cart-decrease, .cart-add{
+    vertical-align: top;
     display: inline-block;
     padding: 6px;
     line-height: 24px;
@@ -12,11 +13,25 @@
     color: rgb(0,160,220);
   }
   .cart-count{
+    vertical-align: top;
     display: inline-block;
-    font-size: 24px;
+    padding: 6px;
+    font-size: 14px;
+    line-height: 24px;
+
   }
   .cart-add{
 
   }
+  .move-enter-active, .move-leave-active {
+    &.inner{
+      transform: rotate(0);
+    }
+  }
+  .move-enter, .move-leave-to{
+    &.inner{
+      transform: rotate(180deg);
 
+    }
+  }
 }
