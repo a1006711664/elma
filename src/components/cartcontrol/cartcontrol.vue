@@ -1,10 +1,13 @@
 <template>
   <div class="cartcontrol">
     <transition name="move">
-      <div class="cart-decrease inner" @click="decreaseCart" v-show="food.count>0">-</div>
+      <div class="cart-decrease " @click="decreaseCart" v-show="food.count>0">
+        <span class="inner">-</span>
+      </div>
     </transition>
-    <!--<transition name></transition>-->
-    <div class="cart-count" v-show="food.count>0">{{food.count}}</div>
+    <transition name="move">
+      <div class="cart-count" v-show="food.count>0">{{food.count}}</div>
+    </transition>
     <div class="cart-add" @click="addCart">+</div>
 
   </div>
@@ -21,6 +24,9 @@
     },
     methods: {
       decreaseCart: function () {
+        if(!this.food.count){
+          return;
+        }
         this.food.count--;
       },
       addCart: function () {
@@ -29,6 +35,7 @@
         } else {
           this.food.count++;
         }
+        this.$emit('cart_add',event.target);
       },
     },
     created: function () {

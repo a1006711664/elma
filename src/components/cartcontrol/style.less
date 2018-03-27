@@ -20,16 +20,22 @@
     line-height: 24px;
 
   }
+  .cart-decrease{
+    .inner{
+      display: inline-block;
+      transition: all .5s linear;
+    }
+  }
   .cart-add{
 
   }
   .move-enter-active, .move-leave-active {
-    &.inner{
-      transform: rotate(0);
+    .inner{
+      transform: rotate(0deg);
     }
   }
   .move-enter, .move-leave-to{
-    &.inner{
+    .inner{
       transform: rotate(180deg);
 
     }
