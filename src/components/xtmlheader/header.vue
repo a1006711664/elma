@@ -96,7 +96,6 @@
     components: {
       star,
     },
-
     data: function () {
       return {
         detailShow: false,

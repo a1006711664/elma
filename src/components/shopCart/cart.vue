@@ -30,6 +30,23 @@
         </transition-group>
 
       </div>
+      <div class="shopcart-list" v-show="listshow">
+        <div class="list-header">
+          <h1 class="title">购物车</h1>
+          <span class="empty">清空</span>
+        </div>
+        <div class="list-content">
+          <ul>
+            <li v-for="food in selectFoods" class="food">
+              <span class="name">{{food.name}}</span>
+              <div class="price">
+                <span></span>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+      </div>
     </div>
   </div>
 </template>
