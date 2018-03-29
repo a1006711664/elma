@@ -1,6 +1,6 @@
 <template>
   <div class="shopCart">
-    <div class="content">
+    <div class="content" @click="toggleList($event)">
       <div class="content-left">
         <div class="logo-wrapper">
           <div class="logo" :class="{hightlight:totalCount>0}">
@@ -9,7 +9,7 @@
           <div class="num" v-show="totalCount>0">{{totalCount}}</div>
         </div>
         <div class="price" :class="{hightlight:totalCount>0}">¥{{totalPrice}}</div>
-        <div class="desc">另需配送费{{deliveryPrice}}元</div>
+        <div class="desc">另需配送费¥{{deliveryPrice}}元</div>
       </div>
       <div class="content-right">
         <div class="pay" :class="payClass">
@@ -30,7 +30,8 @@
         </transition-group>
 
       </div>
-      <div class="shopcart-list" v-show="listshow">
+      <transition name="fold">
+      <div class="shopcart-list" ref="listContent" v-show="listShow">
         <div class="list-header">
           <h1 class="title">购物车</h1>
           <span class="empty">清空</span>
@@ -40,22 +41,28 @@
             <li v-for="food in selectFoods" class="food">
               <span class="name">{{food.name}}</span>
               <div class="price">
-                <span></span>
+                <span>¥{{food.price * food.count}}</span>
+              </div>
+              <div class="cartcontrol-wrapper">
+                <cartcontrol :food="food"></cartcontrol>
               </div>
             </li>
           </ul>
         </div>
-
       </div>
+      </transition>
     </div>
   </div>
 </template>
 
 <script>
+  import cartcontrol from '../cartcontrol/cartcontrol'
+  import BScroll from 'better-scroll';
   export default {
     name: "cart",
     data: function () {
       return {
+        fold:true,
         balls: [{
           show: false,
         }, {
@@ -71,6 +78,13 @@
       }
     },
     methods: {
+      toggleList:function(e){
+        if(!this.totalCount){
+          return;
+        }
+        console.log(e)
+        this.fold = !this.fold;
+      },
       beforeEnter:function(el){
           let count = this.balls.length;
           while(count--){
@@ -148,6 +162,27 @@
       },
     },
     computed: {
+      listShow:function(){
+        if(!this.totalCount){
+          this.fold = true;
+          return false;
+        }
+        let show = !this.fold;
+        if(show){
+          this.$nextTick(() => {
+            console.log(this.$refs.listContent)
+            if(!this.scroll){
+
+              this.scroll =new BScroll(this.$refs.listContent,{
+                click: true,
+              });
+            }else{
+              this.scroll.refresh();
+            }
+          });
+        }
+        return show;
+      },
       payClass: function () {
         return (this.totalPrice < this.minPrice) ? 'not-enough' : 'enough';
       },
@@ -175,6 +210,9 @@
           return '去结算';
         }
       },
+    },
+    components:{
+      cartcontrol
     },
   }
 </script>
