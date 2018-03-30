@@ -15,7 +15,7 @@
         <li v-for="(item, index) in goods" class="foods-list food-list-hook">
           <h1 class="title">{{item.name}}</h1>
           <ul>
-            <li v-for="(food, index) in item.foods" class="food-item">
+            <li @click="selectFood(food,$event)" v-for="(food, index) in item.foods" class="food-item">
               <div class="icon">
                 <img :src="food.icon" width="60" alt="">
               </div>
@@ -40,6 +40,7 @@
     </div>
     <shopcart ref="shopcart" :delivery-price="seller.deliveryPrice" :min-price="seller.minPrice"
               :select-foods="selectFoods"></shopcart>
+    <food :food="selectedFood" ref="food" v-on:cart_add="cart_add"></food>
   </div>
 </template>
 
@@ -49,6 +50,7 @@
   var swiperJ = require('../../libs/touch/swiperJudge.js');
   import shopcart from '../shopCart/cart'
   import cartcontrol from '../cartcontrol/cartcontrol'
+  import food from '../food/food'
 
   export default {
     props: {
@@ -58,7 +60,8 @@
     },
     components: {
       shopcart,
-      cartcontrol
+      cartcontrol,
+      food
     },
     data: function () {
       return {
@@ -67,6 +70,8 @@
         listHeight: [],
         // 跟踪Y实时变化高亮
         scrollY: 0,
+        //todo
+        selectedFood:{},
       }
     },
     computed: {
@@ -94,6 +99,11 @@
       },
     },
     methods: {
+      selectFood:function(food,event){
+        this.selectedFood = food;
+        this.$refs.food.show();
+
+      },
       'cart_add':function(target){
         this._drop(target);
       },

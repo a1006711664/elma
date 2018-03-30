@@ -1,0 +1,45 @@
+@import (reference) url("../../common/skin/skin.less");
+@import  url("../../common/skin/base.less");
+
+
+.ratingselect{
+  .rating-type{
+    padding: 18px 0;
+    margin: 0 18px;
+    .borderB1px(rgba(7,17,27,.2));
+    font-size: 0;
+    .block{
+      display: inline-block;
+      padding: 8px 12px;
+      border-radius: 1px;
+      font-size: 12px;
+      margin-right: 8px;
+      color: rgb(77,85,93);
+      &.active{
+        color: #fff;
+      }
+      .count{
+        font-size:8px;
+        margin-left: 2px;
+      }
+      &.positive{
+        background-color:rgba(0,160,220,.2);
+        &.active{
+          background-color: rgb(0,160,220);
+        }
+      }
+      &.negative{
+        background-color:rgba(77,85,93,.2);
+        &.active{
+          background-color:rgb(77,85,93);
+        }
+      }
+
+
+
+    }
+  }
+  .switch{
+
+  }
+}

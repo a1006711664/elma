@@ -1,5 +1,5 @@
 <template>
-  <div class="cartcontrol">
+  <div class="cartcontrol" @click.stop.prevent>
     <transition name="move">
       <div class="cart-decrease " @click="decreaseCart" v-show="food.count>0">
         <span class="inner">-</span>
@@ -8,7 +8,7 @@
     <transition name="move">
       <div class="cart-count" v-show="food.count>0">{{food.count}}</div>
     </transition>
-    <div class="cart-add" @click="addCart">+</div>
+    <div class="cart-add" @click="addCart($event)">+</div>
 
   </div>
 
@@ -29,7 +29,7 @@
         }
         this.food.count--;
       },
-      addCart: function () {
+      addCart: function (event) {
         if (!this.food.count) {
           this.$set(this.food, 'count', 1);
         } else {
