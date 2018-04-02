@@ -17,9 +17,11 @@
     props:{
       size:{
         type:Number,
+        default:24,
       },
       score:{
         type:Number,
+        default:5,
       }
     },
     computed:{
@@ -49,6 +51,9 @@
       return{
         // itemClasses:'',
       }
+    },
+    created:function(){
+      console.log(this.score)
     },
   }
 

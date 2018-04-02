@@ -1,13 +1,23 @@
 <template>
   <div class="ratingselect">
     <div class="rating-type">
-      <span class="block positive" :class="{'active':selectType===2}">{{desc.all}}<span class="count">47</span></span>
-      <span class="block positive" :class="{'active':selectType===0}">{{desc.positive}}<span class="count">7</span></span>
-      <span class="block negative" :class="{'active':selectType===1}">{{desc.negative}}<span class="count">4</span></span>
+
+      <span @click="select(2,$event)" class="block positive" :class="{'active':selectType===2}">{{desc.all}}<span class="count">
+        {{ratings.length}}
+      </span></span>
+
+      <span @click="select(0,$event)" class="block positive" :class="{'active':selectType===0}">{{desc.positive}}<span class="count">
+        {{positives.length}}
+      </span></span>
+
+      <span @click="select(1,$event)"  class="block negative" :class="{'active':selectType===1}">{{desc.negative}}<span class="count">
+        {{negatives.length}}
+      </span></span>
+
     </div>
-    <div class="switch">
-      <span class="checkIcon">√</span>
-      <span>只看有内容的评价</span>
+    <div @click="toggleContent($event)" class="switch" :class="{'on':onlyContent}">
+      <span class="checkIcon ">√</span>
+      <span class="text">只看有内容的评价</span>
     </div>
 
   </div>
@@ -45,7 +55,35 @@
           }
         }
       }
-    }
+    },
+    computed:{
+      positives:function(){
+       return this.ratings.filter((rating) => {
+          return rating.rateType === POSITIVE;
+        })
+      },
+      negatives:function(){
+        return this.ratings.filter((rating) => {
+          return rating.rateType === NEGATIVE;
+        })
+      },
+    },
+    methods:{
+      toggleContent:function(event){
+        if(!event._constructed){
+          return;
+        }
+        this.onlyContent = !this.onlyContent;
+        this.$emit('content.toggle',this.onlyContent)
+    },
+      select:function(type,event){
+        if(!event._constructed){
+          return;
+        }
+        this.selectType = type;
+        this.$emit('ratingtype.select',type)
+      },
+    },
   }
 </script>
 
