@@ -1,10 +1,9 @@
 <template>
   <div class="star" :class="starType">
-    <span v-for="itemClass in itemClasses" :class="itemClass" class="star-item"
-           track-by="$index"></span>
+    <span v-for="(itemClass,index) in itemClasses" :class="itemClass" class="star-item"
+           :key="index"></span>
   </div>
 </template>
-
 <script>
 
   var LENGTH = 5;
@@ -53,7 +52,6 @@
       }
     },
     created:function(){
-      console.log(this.score)
     },
   }
 

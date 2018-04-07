@@ -78,7 +78,7 @@
       },
       data:function(){
         return{
-          showFlag:false,
+          ratings:[],
           selectType:ALL,
           onlyContent:true,
           desc:{
