@@ -89,6 +89,7 @@
     padding: 0 18px;
     .ratingItem{
       display: flex;
+      padding-top: 12px;
       padding-bottom: 18px;
       .borderB1px(rgba(7,17,27,0.1));
       .avatar{
@@ -125,10 +126,37 @@
           }
         }
         .text{
+          margin-top: 4px;
           margin-bottom: 8px;
           line-height: 18px;
           font-size: 12px;
           color: rgb(7,17,27);
+        }
+        .recommend{
+          line-height: 16px;
+          .laud, .item{
+            margin: 0 8px 4px 0;
+            font-size: 9px;
+            display: inline-block;
+          }
+          .laud{
+            color: rgb(0,160,220);
+          }
+          .item{
+            padding: 0 6px;
+            border: 1px solid rgba(7,17,27,0.1);
+            border-radius: 2px;
+            color: rgb(147,153,159);
+            background-color: #fff;
+          }
+        }
+        .time{
+          position: absolute;
+          top: 0;
+          right: 0;
+          line-height: 12px;
+          font-size: 10px;
+          color: rgb(147,153,159);
         }
       }
 

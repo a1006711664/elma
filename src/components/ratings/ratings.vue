@@ -52,12 +52,12 @@
               <h1 class="name">{{rating.username}}</h1>
               <div class="star-wrapper">
                 <star :size="24" :score="rating.score"></star>
-                <span class="delivery" v-show="rating">
-{{rating.deliveryTime}}
+                <span class="delivery" v-show="rating.deliveryTime">
+{{rating.deliveryTime}}分钟送达
                 </span>
                 <p class="text">{{rating.text}}</p>
                 <div class="recommend" v-show="rating.recommend.length">
-                  <span class="laud">赞</span><span v-for="item in rating.recommend">{{item}}</span>
+                  <span class="laud">赞</span><span v-for="item in rating.recommend" class="item">{{item}}</span>
                 </div>
                 <div class="time">
                     {{rating.rateTime | formatDate}}
