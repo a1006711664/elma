@@ -49,6 +49,7 @@
   import BScroll from 'better-scroll';
   //没有用的,测试的
   var swiperJ = require('../../libs/touch/swiperJudge.js');
+
   import shopcart from '../shopCart/cart'
   import cartcontrol from '../cartcontrol/cartcontrol'
   import food from '../food/food'

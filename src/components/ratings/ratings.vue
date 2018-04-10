@@ -1,5 +1,5 @@
 <template>
-  <div class="ratings">
+  <div class="ratings" ref="ratings">
 
     <div class="ratings-content">
       <div class="overview">
@@ -60,7 +60,7 @@
                   <span class="laud">赞</span><span v-for="item in rating.recommend">{{item}}</span>
                 </div>
                 <div class="time">
-
+                    {{rating.rateTime | formatDate}}
                 </div>
               </div>
             </div>
@@ -75,6 +75,7 @@
   import star from "../star/star"
   import split from "../split/split"
   import ratingselect from "../ratingselect/ratingselect"
+  import BScroll from 'better-scroll';
 
   import DF from "@/libs/dateFormat/dateFormat"
 
@@ -95,13 +96,28 @@
         type: Object,
       }
     },
-    methods: {},
+    filters:{
+      formatDate(time){
+        let timeF = new Date(time);
+        return DF.prettyDate(timeF,'GB');
+      },
+    },
+    methods: {
+      _initScroll(){
+        this.ratingScroll = new BScroll(this.$refs.ratings, {
+          click: true,
+        });
+      },
+    },
     created(){
       let _self = this;
       this.$http.get('api/ratings').then(response => {
         response = response.body;
         if(response.errno == ERR_OK){
           _self.ratings = response.data;
+          _self.$nextTick(()=>{
+            _self._initScroll();
+          });
         }
 
       }, response => {

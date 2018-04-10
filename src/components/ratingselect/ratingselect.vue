@@ -74,14 +74,17 @@
           return;
         }
         this.onlyContent = !this.onlyContent;
-        this.$emit('content.toggle',this.onlyContent)
+        console.log('跳过了这个error_onlycontent')
+        // this.$emit('content.toggle',this.onlyContent);
     },
       select:function(type,event){
         if(!event._constructed){
           return;
         }
+        // 改变不了父组件的
         this.selectType = type;
-        this.$emit('ratingtype.select',type)
+        console.log('跳过了这个error_type');
+        // this.$emit('ratingtype.select',type)
       },
     },
   }

@@ -60,7 +60,6 @@
   import cartcontrol from '../cartcontrol/cartcontrol';
   import split from "../split/split"
   import ratingselect from "../ratingselect/ratingselect"
-
   const POSITIVE = 0;
   const NEGATIVE = 1;
   const ALL = 2;
@@ -76,11 +75,15 @@
              type:Object,
            }
       },
+      filters:{
+        // DF
+      },
       data:function(){
         return{
           ratings:[],
           selectType:ALL,
           onlyContent:true,
+          showFlag:false,
           desc:{
             all:'全部',
             positive: '推荐',
